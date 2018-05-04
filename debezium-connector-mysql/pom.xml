@@ -323,6 +323,57 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>io.confluent</groupId>
+                <artifactId>kafka-connect-maven-plugin</artifactId>
+                <version>0.10.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>kafka-connect</goal>
+                        </goals>
+                        <configuration>
+                            <title>Debezium MySQL Connector</title>
+                            <sourceUrl>https://github.com/debezium/debezium</sourceUrl>
+                            <documentationUrl>http://debezium.io/docs/connectors/mysql/</documentationUrl>
+                            <description>
+                                Debezium’s MySQL Connector can monitor and record all of the row-level changes in the databases on a MySQL server or HA MySQL cluster. The first time it connects to a MySQL server/cluster, it reads a consistent snapshot of all of the databases. When that snapshot is complete, the connector continuously reads the changes that were committed to MySQL 5.6 or later and generates corresponding insert, update and delete events. All of the events for each table are recorded in a separate Kafka topic, where they can be easily consumed by applications and services.
+
+                                As of Debezium 0.4.0, this connector adds preliminary support for Amazon RDS and Amazon Aurora (MySQL compatibility). However, due to limitations of these hosted forms of MySQL, the connector retains locks during an initial consistent snapshot for the duration of the snapshot.
+                            </description>
+                            <logo>logos/s3.jpg</logo>
+
+                            <supportProviderName>Confluent, Inc.</supportProviderName>
+                            <supportSummary>Confluent supports the MySQL CDC source connector alongside community members as part of its Confluent Platform open source offering.</supportSummary>
+                            <supportUrl>https://docs.confluent.io/current/</supportUrl>
+
+                            <ownerUsername>confluentinc</ownerUsername>
+                            <ownerType>organization</ownerType>
+                            <ownerName>Confluent, Inc.</ownerName>
+                            <ownerUrl>https://confluent.io/</ownerUrl>
+
+                            <dockerNamespace>confluentinc</dockerNamespace>
+                            <dockerName>cp-kafka-connect</dockerName>
+                            <dockerTag>${project.version}</dockerTag>
+
+                            <componentTypes>
+                                <componentType>source</componentType>
+                            </componentTypes>
+
+                            <tags>
+                                <tag>mysql</tag>
+                                <tag>cdc</tag>
+                            </tags>
+
+                            <confluentControlCenterIntegration>true</confluentControlCenterIntegration>
+
+                            <requirements>
+                                <requirement>MySQL DB with appropriate permissions</requirement>
+                            </requirements>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <!-- Apply the properties set in the POM to the resource files -->
